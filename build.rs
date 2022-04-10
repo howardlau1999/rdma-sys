@@ -42,31 +42,6 @@ impl ParseCallbacks for BindGenCallback {
 }
 
 fn main() {
-    // assert!(pkg_config::find_library("libclang-dev").is_ok(), "libclang-dev NOT found");
-    // pkg_config::Config::new()
-    //     .atleast_version(LIB_CLANG_DEV_VERSION)
-    //     //.statik(true)
-    //     .probe("libclang")
-    //     .expect(&format!("please install libclang-dev {}", LIB_CLANG_DEV_VERSION));
-
-    pkg_config::Config::new()
-        .atleast_version(LIB_IBVERBS_DEV_VERSION)
-        .statik(true)
-        .probe("libibverbs")
-        .expect(&format!(
-            "please install libibverbs-dev {}",
-            LIB_IBVERBS_DEV_VERSION
-        ));
-
-    pkg_config::Config::new()
-        .atleast_version(LIB_RDMACM_DEV_VERSION)
-        .statik(true)
-        .probe("librdmacm")
-        .expect(&format!(
-            "please install librdmacm-dev {}",
-            LIB_RDMACM_DEV_VERSION,
-        ));
-
     let bindings = bindgen::Builder::default()
         .header("/usr/include/infiniband/verbs.h")
         .header("/usr/include/rdma/rdma_cma.h")
